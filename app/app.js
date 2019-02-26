@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import "./klondike/scoring.js";
 import "./klondike/scoring.js";
 import "./klondike/klondike.js";
