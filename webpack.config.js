@@ -1,7 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
+const babelLoader = require('./babelLoader');
+const merge = require('webpack-merge');
 
-module.exports = {
+const baseConfig = {
     mode: "development",
     entry: './app/app.js',
     output: {
@@ -16,19 +18,13 @@ module.exports = {
         hotOnly: true,
         overlay: true
     },
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            }
-        ]
-    },
     plugins: [
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
+};
+
+
+module.exports = function () {
+    return merge(baseConfig, babelLoader);
 };
