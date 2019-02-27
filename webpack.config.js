@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const babelLoader = require('./babelLoader');
 const merge = require('webpack-merge');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const baseConfig = {
     mode: "development",
@@ -19,6 +20,7 @@ const baseConfig = {
         overlay: true
     },
     plugins: [
+        new CleanWebpackPlugin(['app/dist']),
         new webpack.NamedModulesPlugin(),
         new webpack.HotModuleReplacementPlugin()
     ]
